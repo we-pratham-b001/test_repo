@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
+                Text("Upload images to API Using Dio"),
               image != null ? Image.file(image!,height: 200,)
                   :Text('Image not Selected',style: TextStyle(fontSize: 18),),
               SizedBox(height: 20),
