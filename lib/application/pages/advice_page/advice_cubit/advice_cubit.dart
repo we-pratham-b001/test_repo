@@ -15,8 +15,19 @@ class AdviceCubit extends Cubit<AdviceCubitState> {
     final adviceOrFailure = await adviceUseCases.getAdvice();
     adviceOrFailure.fold(
       (failures) =>
-          emit(AdviceErrorState(errorMessage: 'Something went wrong!')),
+          emit(AdviceErrorState(errorMessage: errorMessage(failures))),
       (adviceEntity) => emit(AdviceLoaded(advice: adviceEntity)),
     );
+  }
+
+  String errorMessage(Failures failure){
+    switch(failure.runtimeType){
+      case ServerFailure:
+        return "Can't connect to the server at the moment";
+      case CacheFailure:
+        return "Cache Failed please try again";
+      default:
+        return "Something went wrong!";
+    }
   }
 }
