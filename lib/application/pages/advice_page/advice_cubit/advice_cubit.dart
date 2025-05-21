@@ -8,11 +8,9 @@ import 'package:flutter/material.dart';
 part 'advice_state.dart';
 
 class AdviceCubit extends Cubit<AdviceCubitState> {
-  AdviceCubit() : super(AdviceInitial());
-
+  final AdviceUseCases adviceUseCases ;
+  AdviceCubit({required this.adviceUseCases}) : super(AdviceInitial());
   void adviceRequested() async {
-
-    final AdviceUseCases adviceUseCases = AdviceUseCases();
     emit(AdviceLoading());
     final adviceOrFailure = await adviceUseCases.getAdvice();
     adviceOrFailure.fold(
