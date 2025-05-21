@@ -9,9 +9,7 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
   AdviceBloc() : super(AdviceInitial()) {
     on<AdviceRequestedEvent>((event, emit) async {
       emit(AdviceLoading());
-      debugPrint('here is an advice you you!');
       await Future.delayed(Duration(seconds: 5), () {});
-      debugPrint('Done');
       emit(
         AdviceLoaded(
           advice:

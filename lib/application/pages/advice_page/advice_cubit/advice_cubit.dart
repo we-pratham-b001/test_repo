@@ -1,3 +1,4 @@
+import 'package:advicer/data/data_sources/remote_data_source.dart';
 import 'package:advicer/domain/entities/advice_entity.dart';
 import 'package:advicer/domain/failures/failures.dart';
 import 'package:advicer/domain/use_cases/advice_use_cases.dart';
@@ -10,6 +11,7 @@ class AdviceCubit extends Cubit<AdviceCubitState> {
   AdviceCubit() : super(AdviceInitial());
 
   void adviceRequested() async {
+
     final AdviceUseCases adviceUseCases = AdviceUseCases();
     emit(AdviceLoading());
     final adviceOrFailure = await adviceUseCases.getAdvice();
@@ -20,8 +22,8 @@ class AdviceCubit extends Cubit<AdviceCubitState> {
     );
   }
 
-  String errorMessage(Failures failure){
-    switch(failure.runtimeType){
+  String errorMessage(Failures failure) {
+    switch (failure.runtimeType) {
       case ServerFailure:
         return "Can't connect to the server at the moment";
       case CacheFailure:
