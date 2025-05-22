@@ -9,19 +9,18 @@ abstract class AdviceRemoteDataSource {
 
 class AdviceRemoteDataSourceImp extends AdviceRemoteDataSource {
   AdviceRemoteDataSourceImp({required this.client});
-  final http.Client client ;
+  final http.Client client;
   @override
   Future<AdviceModel> getRandomAdviceFromApi() async {
     http.Response response = await client.get(
       Uri.parse('https://api.flutter-community.de/api/v1/advice'),
       headers: {'content-type': 'application/json'},
     );
-    if(response.statusCode !=200){
+    if (response.statusCode != 200) {
       throw ServerException();
-    }else{
+    } else {
       Map<String, dynamic> data = jsonDecode(response.body);
       return AdviceModel.formJson(data);
     }
-
   }
 }

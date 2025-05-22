@@ -9,12 +9,16 @@ import 'package:get_it/get_it.dart';
 
 final sl = GetIt.I;
 
-Future<void> init() async{
-  sl.registerFactory(()=>AdviceCubit(adviceUseCases: sl()));
+Future<void> init() async {
+  sl.registerFactory(() => AdviceCubit(adviceUseCases: sl()));
 
-  sl.registerFactory(()=>AdviceUseCases(adviceRepo: sl()));
+  sl.registerFactory(() => AdviceUseCases(adviceRepo: sl()));
 
-  sl.registerFactory<AdviceRepo>(()=>AdviceRepoImpl(adviceRemoteDataSource: sl()));
-  sl.registerFactory<AdviceRemoteDataSource>(()=>AdviceRemoteDataSourceImp(client: sl()));
-  sl.registerFactory(()=>http.Client());
+  sl.registerFactory<AdviceRepo>(
+    () => AdviceRepoImpl(adviceRemoteDataSource: sl()),
+  );
+  sl.registerFactory<AdviceRemoteDataSource>(
+    () => AdviceRemoteDataSourceImp(client: sl()),
+  );
+  sl.registerFactory(() => http.Client());
 }

@@ -6,9 +6,9 @@ import 'package:dartz/dartz.dart';
 
 class AdviceUseCases {
   AdviceUseCases({required this.adviceRepo});
-  final AdviceRepo adviceRepo ;
+  final AdviceRepo adviceRepo;
 
-  Future<Either<Failures, AdviceEntity>> getAdvice()  {
+  Future<Either<Failures, AdviceEntity>> getAdvice() {
     return adviceRepo.getAdviceFromDataSource();
   }
 }
